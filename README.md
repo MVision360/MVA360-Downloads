@@ -14,9 +14,9 @@ It's a plain static site: no build step, no cookies, no analytics, and no third-
 | `assets/fonts/` | Barlow Condensed and Public Sans (SIL Open Font Licence) |
 | `CNAME` | Tells GitHub Pages to serve the site at mva360.com.au |
 
-## Editing prices or text
+## Editing
 
-Prices appear in `index.html` in the pricing section (`data-monthly` / `data-annual` values) and are described in `legal/terms.html`. Keep them in step with the app's licence screen (`app/licence_ui.py` in MVA360-App).
+See **[EDITING.md](EDITING.md)**: how to change text, prices, questions and screenshots in the browser, and the price-change checklist (website, licence server and Pin must match).
 
 ## Later
 
