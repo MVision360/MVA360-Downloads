@@ -31,11 +31,12 @@ Open the file, click **History**, click the change before yours, then the **⋯*
 | "Prices are in Australian dollars…" note | `index.html` | `price-footnote` |
 | Questions and answers | `index.html` | `<summary>` (each question is a `<details>` block) |
 | Download page wording | `download.html` | the words you can see on the site |
+| Help page (how to use MVA360) | `help.html` | the section title, e.g. `id="tagging"` |
 | Terms, privacy, refunds | `legal/terms.html`, `legal/privacy.html`, `legal/refunds.html` | the words you can see on the site |
 | Support email address | every `.html` file | `support@mva360.com.au` |
 | Colours | `assets/site.css` | `--orange`, `--navy`, `--chalk` near the top |
 
-The **top menu and footer are copied in every page**. If you change a menu link, change it in `index.html`, `download.html` and the three `legal/` pages.
+The **top menu and footer are copied in every page**. If you change a menu link, change it in `index.html`, `download.html`, `help.html` and the three `legal/` pages.
 
 ## Adding a question
 
