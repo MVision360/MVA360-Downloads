@@ -108,10 +108,10 @@ p { margin: 0; max-width: var(--measure); }
 /* Kept at 1.2rem bold or larger so white on orange meets WCAG large-text contrast. */
 .site-nav .button { font-size: 1.2rem; padding: 9px 18px 10px; }
 @media (max-width: 640px) {
-  .site-nav .secondary { display: none; }
+  .site-nav .secondary:not(.keep) { display: none; }
   .site-header .wrap, .site-nav { flex-wrap: nowrap; }
   .site-nav .button { font-size: 1.2rem; padding: 8px 14px 9px; white-space: nowrap; }
-  .site-nav a:not(.button) { display: none; }
+  .site-nav a:not(.button):not(.keep) { display: none; }
   .brand img { height: 46px; }
   .site-nav { gap: 16px; }
 }
@@ -324,3 +324,34 @@ section { padding: clamp(56px, 8vw, 104px) 0; }
 .req li { padding: 14px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 11ch 1fr; gap: 16px; }
 .req li:last-child { border-bottom: 1px solid var(--line); }
 .req strong { font-family: var(--display); font-size: 1.2rem; font-weight: 600; }
+
+/* Help page ---------------------------------------------------------- */
+.help { display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); margin-top: 36px; align-items: start; }
+.help-toc { position: sticky; top: 24px; border-top: 4px solid var(--navy); padding-top: 14px; }
+.help-toc h2 { font-size: 1.1rem; margin: 0 0 10px; }
+.help-toc ol { list-style: none; margin: 0; padding: 0; }
+.help-toc li + li { margin-top: 8px; }
+.help-toc a { text-decoration: none; color: var(--navy-soft); }
+.help-toc a:hover { color: var(--orange-ink); text-decoration: underline; text-decoration-color: var(--orange); }
+.help .prose { margin-top: 0; }
+.help .prose section { padding: 0; scroll-margin-top: 16px; }
+.help .prose section + section { border-top: 1px solid var(--line); margin-top: 44px; padding-top: 4px; }
+.help .prose section > h2:first-child { margin-top: 32px; }
+.help .prose section:first-child > h2:first-child { margin-top: 0; }
+.prose ol { padding-left: 1.4em; margin: 12px 0 0; }
+.prose ol li + li { margin-top: 8px; }
+.prose ul + ul, .prose ol + p, .prose p + ol { margin-top: 14px; }
+.prose table { border-collapse: collapse; margin-top: 14px; width: 100%; }
+.prose th, .prose td { text-align: left; padding: 9px 12px 9px 0; border-top: 1px solid var(--line); vertical-align: top; }
+.prose th { font-weight: 700; }
+.prose .callout { margin-top: 18px; }
+kbd { font-family: var(--body); font-size: .9em; font-weight: 700; background: #fff; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; padding: 1px 7px; white-space: nowrap; }
+.ui { font-weight: 700; }
+@media (max-width: 860px) {
+  .help { grid-template-columns: 1fr; }
+  .help-toc { position: static; }
+  .help-toc ol { columns: 2; column-gap: 24px; }
+  .help-toc li { break-inside: avoid; margin-bottom: 8px; }
+  .help-toc li + li { margin-top: 0; }
+}
+@media (max-width: 480px) { .help-toc ol { columns: 1; } }
