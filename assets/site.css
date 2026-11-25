@@ -356,97 +356,47 @@ kbd { font-family: var(--body); font-size: .9em; font-weight: 700; background: #
 }
 @media (max-width: 480px) { .help-toc ol { columns: 1; } }
 
-/* Hero demo: an animated MVA360 window (drawn in code, no footage). ----- */
+/* Hero demo: real MVA360 screens with an animated pitch in the video area. */
 .demo { margin: clamp(40px, 6vw, 72px) 0 0; padding: 0 0 clamp(40px, 6vw, 72px); }
-.demo-frame { container-type: inline-size; }
-.demo-app {
-  --app-bg: #101419; --app-panel: #182029; --app-line: #2A3540; --app-text: #F2F5F7; --app-soft: #9AA7B2;
-  font-family: var(--body);
-  font-size: max(8.5px, 1.45cqw);
-  background: var(--app-bg); color: var(--app-text);
-  border-radius: 0.9em; overflow: hidden;
-  box-shadow: 0 1.6em 3.5em -1.2em rgba(19, 32, 43, .45), 0 0 0 1px rgba(19, 32, 43, .12);
+.demo-shot {
+  /* Video area positions measured from the real screens (1440 x 1040). */
+  --vx: 0.833%; --vy: 7.31%; --vh: 47.02%; --vw: 98.33%;
+  position: relative; aspect-ratio: 1440 / 1040;
+  border-radius: 12px; overflow: hidden; background: #101419;
+  box-shadow: 0 24px 56px -20px rgba(19, 32, 43, .45), 0 0 0 1px rgba(19, 32, 43, .12);
 }
-.app-bar { display: flex; align-items: center; gap: 0.9em; padding: 0.75em 1.1em; border-bottom: 1px solid var(--app-line); }
-.app-bar b { font-size: 1.15em; }
-.app-bar .mode { font-size: 0.8em; color: #7DD3FC; border: 1px solid #1E6A8A; border-radius: 0.5em; padding: 0.25em 0.6em; }
-.app-dots { margin-left: auto; display: flex; gap: 0.45em; }
-.app-dots i { width: 0.65em; height: 0.65em; border-radius: 50%; background: var(--app-line); }
-.app-video { position: relative; aspect-ratio: 640 / 300; background: #2b7444; overflow: hidden; }
-.app-video .pitch, .app-video .footage { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-.app-video .footage { object-fit: cover; filter: blur(6px) saturate(.9) brightness(.8); transform: scale(1.06); }
-.app-video .players circle { stroke: #fff; stroke-width: 2; }
-.goal-flash {
-  position: absolute; left: 4%; right: 50%; top: 40%; text-align: center;
-  font-family: var(--display); font-weight: 700; font-size: 3.2em; color: #fff;
-  text-shadow: 0 0.06em 0.3em rgba(0,0,0,.45); opacity: 0; transform: scale(.7);
-  transition: opacity .25s, transform .35s cubic-bezier(.2,.8,.3,1.3);
+.demo-shot[data-step="1"], .demo-shot[data-step="2"], .demo-shot[data-step="3"] { --vw: 70.97%; }
+.demo-shot .f { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity .35s; }
+.demo-shot[data-step="0"] .f-play,
+.demo-shot[data-step="1"] .f-panel,
+.demo-shot[data-step="2"] .f-player, .demo-shot[data-step="3"] .f-player, .demo-shot[data-step="static"] .f-player,
+.demo-shot[data-step="4"] .f-tagged, .demo-shot[data-step="5"] .f-tagged { opacity: 1; }
+.demo-shot .vid {
+  position: absolute; left: var(--vx); top: var(--vy); width: var(--vw); height: var(--vh);
+  background: repeating-linear-gradient(90deg, #2f7d4a 0 6.25%, #2b7444 6.25% 12.5%);
+  overflow: hidden; transition: width .35s;
 }
-.demo-app[data-step="1"] .goal-flash, .demo-app[data-step="2"] .goal-flash { opacity: 1; transform: scale(1); }
-
-.panel {
-  position: absolute; top: 0.9em; bottom: 0.9em; right: 0.9em; width: 46%;
-  background: rgba(16, 20, 25, .94); border: 1px solid var(--app-line); border-radius: 0.7em;
-  padding: 0.8em; opacity: 0; transform: translateX(1.2em); pointer-events: none;
-  transition: opacity .3s, transform .35s;
+.demo-shot[data-step="static"] .vid { width: 70.97%; }
+.demo-shot .pitch, .demo-shot .footage { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.demo-shot .footage { object-fit: cover; filter: blur(6px) saturate(.9) brightness(.8); transform: scale(1.06); }
+.demo-shot .players circle { stroke: #fff; stroke-width: 2; }
+.goal-press {
+  /* The real Goal button on the tag panel */
+  position: absolute; left: 73.33%; top: 48.85%; width: 11.53%; height: 4.62%;
+  border-radius: 6px; box-shadow: 0 0 0 3px #38BDF8, 0 0 18px 4px rgba(56, 189, 248, .55);
+  background: rgba(14, 95, 134, .45); opacity: 0; transition: opacity .2s;
 }
-.tag-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8em; }
-.demo-app[data-step="1"] .tag-panel, .demo-app[data-step="2"] .tag-panel, .demo-app[data-step="3"] .tag-panel,
-.demo-app[data-step="static"] .tag-panel { opacity: 1; transform: none; }
-.panel h4 { margin: 0 0 0.5em; font: 700 0.8em/1 var(--body); color: var(--app-soft); text-transform: uppercase; letter-spacing: .08em; }
-.panel ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35em; }
-.panel li {
-  display: flex; align-items: center; gap: 0.5em; padding: 0.35em 0.5em; border-radius: 0.45em;
-  background: var(--app-panel); font-size: 0.95em; transition: background .25s, box-shadow .25s;
+.demo-shot[data-step="3"] .goal-press, .demo-shot[data-step="static"] .goal-press { opacity: 1; }
+.reel-toast {
+  position: absolute; left: 50%; top: calc(var(--vy) + var(--vh) / 2); width: 34%;
+  transform: translate(-50%, -46%); opacity: 0; transition: opacity .35s, transform .45s;
+  background: #182029; border: 1px solid #2A3540; border-radius: 10px; padding: 1.2% 1.2% 0.6%;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .45); text-align: center; color: #F2F5F7;
 }
-.shirt { width: 1.5em; height: 1.5em; flex: none; }
-.shirt path { fill: #F15F30; stroke: #B8401C; stroke-width: 3; }
-.shirt text { fill: #fff; font: 700 44px/1 var(--body); text-anchor: middle; }
-.events-list i { width: 0.75em; height: 0.75em; border-radius: 50%; flex: none; }
-.events-list .attack i { background: var(--attack); }
-.events-list .defend i { background: var(--defend); }
-.events-list .general i { background: var(--general); }
-.demo-app[data-step="2"] .players-list .pick, .demo-app[data-step="3"] .pick,
-.demo-app[data-step="static"] .pick { background: #0E5F86; box-shadow: 0 0 0 2px #38BDF8 inset; }
-
-.reel-panel { display: flex; flex-direction: column; justify-content: center; gap: 0.8em; }
-.demo-app[data-step="4"] .reel-panel { opacity: 1; transform: none; }
-.reel-card {
-  aspect-ratio: 16 / 9; border-radius: 0.5em; background: linear-gradient(#13202B, #0B141C);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.35em; text-align: center;
-}
-.reel-card .kick { font: 700 0.7em/1 var(--body); color: #F15F30; letter-spacing: .14em; }
-.reel-card .who { display: flex; align-items: center; gap: 0.35em; font: 700 1.6em/1 var(--body); }
-.reel-card .who .shirt { width: 1.1em; height: 1.1em; }
-.reel-card .det { font-size: 0.75em; color: var(--app-soft); }
-.reel-done { margin: 0; text-align: center; font-weight: 700; }
-.reel-done .tick { color: #4ADE80; }
-
-.app-transport { display: flex; align-items: center; gap: 0.6em; padding: 0.7em 1.1em; border-top: 1px solid var(--app-line); }
-.app-transport .tb { padding: 0.35em 0.75em; border: 1px solid var(--app-line); border-radius: 0.45em; color: var(--app-soft); font-size: 0.85em; }
-.app-transport .play { color: #F15F30; }
-.app-transport .time { font-family: ui-monospace, Consolas, monospace; color: var(--app-soft); margin-left: 0.4em; font-size: 0.9em; }
-.app-transport .tkey {
-  margin-left: auto; background: #E2552B; color: #fff; font-weight: 700; border-radius: 0.5em;
-  padding: 0.45em 1em; transition: transform .15s, box-shadow .2s;
-}
-.app-transport .tkey kbd { font: inherit; margin-right: 0.4em; background: none; border: 0; padding: 0; color: inherit; }
-.demo-app[data-step="1"] .tkey { transform: scale(.92); box-shadow: 0 0 0 0.35em rgba(241, 95, 48, .35); }
-
-.app-timeline { position: relative; height: 3.4em; margin: 0 1.6em; }
-.app-timeline .rail { position: absolute; left: 0; right: 0; top: 1.7em; height: 0.22em; border-radius: 1em; background: #3A4652; }
-.app-timeline .d { position: absolute; top: 1.36em; width: 0.9em; height: 0.9em; margin-left: -0.45em; border-radius: 50%; border: 0.12em solid var(--app-bg); }
-.app-timeline .d.attack { background: var(--attack); }
-.app-timeline .d.defend { background: var(--defend); }
-.app-timeline .d.general { background: var(--general); }
-.app-timeline .head { position: absolute; top: 0.9em; width: 0.16em; height: 1.9em; background: #38BDF8; left: 79%; transition: left 1.2s linear; }
-.app-timeline .new { opacity: 0; transform: translateY(-1.4em) scale(.4); transition: opacity .3s, transform .45s cubic-bezier(.2,.8,.3,1.3); }
-.app-timeline .new em {
-  position: absolute; left: 50%; bottom: 1.4em; transform: translateX(-50%); white-space: nowrap;
-  font: 600 0.8em/1 var(--body); font-style: normal; background: var(--app-text); color: var(--navy); border-radius: 0.4em; padding: 0.3em 0.55em;
-}
-.demo-app[data-step="3"] .new, .demo-app[data-step="4"] .new, .demo-app[data-step="static"] .new { opacity: 1; transform: none; }
-.demo-app[data-step="4"] .head { left: 85%; }
+.reel-toast img { display: block; width: 100%; height: auto; border-radius: 6px; }
+.reel-toast p { margin: 0; padding: 0.5em 0 0.4em; font-weight: 700; font-size: clamp(9px, 1.4vw, 16px); max-width: none; }
+.reel-toast .tick { color: #4ADE80; }
+.demo-shot[data-step="5"] .reel-toast { opacity: 1; transform: translate(-50%, -50%); }
 
 .demo-steps { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; counter-reset: step; }
 .demo-steps li {
@@ -460,6 +410,4 @@ kbd { font-family: var(--body); font-size: .9em; font-weight: 700; background: #
   .demo-steps { grid-template-columns: 1fr; gap: 8px; }
   .demo-steps li { border-top: 0; border-left: 4px solid var(--line); padding: 2px 0 2px 10px; }
   .demo-steps li.on { border-color: var(--orange); }
-  .panel { width: 58%; }
-  .goal-flash { right: 58%; }
 }
