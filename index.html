@@ -38,36 +38,46 @@
         <span class="hero-note">No card needed for the trial. For Windows and Mac.</span>
       </div>
 
-      <figure class="match animate" aria-label="Example match timeline with tagged moments">
-        <div class="match-rail">
-          <span class="half" aria-hidden="true"></span>
-          <span class="dot attack minor" style="left:3%;--i:0"></span>
-          <span class="dot defend" style="left:6.5%;--i:1"><span class="tag">Save, Ollie #1</span></span>
-          <span class="dot attack minor" style="left:11%;--i:2"></span>
-          <span class="dot general" style="left:14%;--i:3"></span>
-          <span class="dot defend minor" style="left:18%;--i:4"></span>
-          <span class="dot attack" style="left:21.5%;--i:5"></span>
-          <span class="dot attack minor" style="left:25%;--i:6"></span>
-          <span class="dot attack keep" style="left:31%;--i:7"><span class="tag">Goal, Zara #4</span></span>
-          <span class="dot defend minor" style="left:35%;--i:8"></span>
-          <span class="dot attack" style="left:39%;--i:9"></span>
-          <span class="dot defend minor" style="left:42%;--i:10"></span>
-          <span class="dot attack" style="left:46%;--i:11"></span>
-          <span class="dot general minor" style="left:55%;--i:12"></span>
-          <span class="dot attack" style="left:58.5%;--i:13"></span>
-          <span class="dot defend low" style="left:64%;--i:14"><span class="tag">Tackle, Ethan #9</span></span>
-          <span class="dot attack" style="left:68%;--i:15"></span>
-          <span class="dot defend minor" style="left:71%;--i:16"></span>
-          <span class="dot attack" style="left:75%;--i:17"></span>
-          <span class="dot general minor" style="left:78.5%;--i:18"></span>
-          <span class="dot attack" style="left:83%;--i:19"><span class="tag">Assist, Ruby #12</span></span>
-          <span class="dot attack minor" style="left:86%;--i:20"></span>
-          <span class="dot defend" style="left:90%;--i:21"></span>
-          <span class="dot attack minor" style="left:94%;--i:22"></span>
-          <span class="dot defend" style="left:97.5%;--i:23"></span>
+      <figure class="demo" aria-label="Animated example: press T during the match, choose the player and event, and MVA360 makes the highlight reel">
+        <div class="demo-frame">
+          <div class="demo-app" data-step="0">
+            <div class="app-bar"><b>Rovers U10 vs City U10</b><span class="mode">Tag as you watch</span><span class="app-dots"><i></i><i></i><i></i></span></div>
+            <div class="app-video">
+              <!-- Later: <video class="footage" autoplay muted loop playsinline src="assets/video/sideline.mp4"></video> (blurred by CSS) -->
+              <svg class="pitch" viewBox="0 0 640 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <defs><pattern id="stripes" width="80" height="300" patternUnits="userSpaceOnUse"><rect width="40" height="300" fill="#2f7d4a"/><rect x="40" width="40" height="300" fill="#2b7444"/></pattern></defs>
+                <rect width="640" height="300" fill="url(#stripes)"/>
+                <g fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2.5">
+                  <rect x="20" y="20" width="600" height="260"/><line x1="320" y1="20" x2="320" y2="280"/><circle cx="320" cy="150" r="42"/>
+                  <rect x="20" y="85" width="70" height="130"/><rect x="550" y="85" width="70" height="130"/>
+                </g>
+                <rect x="18" y="125" width="10" height="50" fill="rgba(255,255,255,.8)"/>
+                <g class="players"></g>
+                <circle class="ball" r="6" cx="340" cy="120" fill="#fff" stroke="#13202B" stroke-width="1.5"/>
+              </svg>
+              <div class="goal-flash">GOAL!</div>
+              <div class="panel tag-panel" aria-hidden="true">
+                <div class="panel-col"><h4>Player</h4><ul class="players-list"><li><svg class="shirt" viewBox="0 0 100 100" aria-hidden="true"><path d="M33 6 12 15 0 38 17 47 24 38 24 96 76 96 76 38 83 47 100 38 88 15 67 6Q50 24 33 6Z"/><text x="50" y="74">1</text></svg><span>Ollie</span></li><li class="pick"><svg class="shirt" viewBox="0 0 100 100" aria-hidden="true"><path d="M33 6 12 15 0 38 17 47 24 38 24 96 76 96 76 38 83 47 100 38 88 15 67 6Q50 24 33 6Z"/><text x="50" y="74">4</text></svg><span>Zara</span></li><li><svg class="shirt" viewBox="0 0 100 100" aria-hidden="true"><path d="M33 6 12 15 0 38 17 47 24 38 24 96 76 96 76 38 83 47 100 38 88 15 67 6Q50 24 33 6Z"/><text x="50" y="74">9</text></svg><span>Ethan</span></li><li><svg class="shirt" viewBox="0 0 100 100" aria-hidden="true"><path d="M33 6 12 15 0 38 17 47 24 38 24 96 76 96 76 38 83 47 100 38 88 15 67 6Q50 24 33 6Z"/><text x="50" y="74">12</text></svg><span>Ruby</span></li><li><svg class="shirt" viewBox="0 0 100 100" aria-hidden="true"><path d="M33 6 12 15 0 38 17 47 24 38 24 96 76 96 76 38 83 47 100 38 88 15 67 6Q50 24 33 6Z"/><text x="50" y="74">7</text></svg><span>Mia</span></li></ul></div>
+                <div class="panel-col"><h4>Event</h4><ul class="events-list"><li class="attack pick"><i></i>Goal</li><li class="attack"><i></i>Shot</li><li class="attack"><i></i>Assist</li><li class="defend"><i></i>Tackle</li><li class="defend"><i></i>Save</li><li class="general"><i></i>Effort</li></ul></div>
+              </div>
+              <div class="panel reel-panel" aria-hidden="true">
+                <div class="reel-card">
+                  <span class="kick">PLAYER HIGHLIGHTS</span>
+                  <span class="who"><svg class="shirt" viewBox="0 0 100 100" aria-hidden="true"><path d="M33 6 12 15 0 38 17 47 24 38 24 96 76 96 76 38 83 47 100 38 88 15 67 6Q50 24 33 6Z"/><text x="50" y="74">4</text></svg>Zara</span>
+                  <span class="det">Round 6 · 21 Nov · vs City U10</span>
+                </div>
+                <p class="reel-done"><span class="tick">✓</span> Highlight reel ready</p>
+              </div>
+            </div>
+            <div class="app-transport"><span class="tb">◀◀</span><span class="tb play">▶</span><span class="tb">▶▶</span><span class="time">23:41</span><span class="tkey"><kbd>T</kbd> Tag Event</span></div>
+            <div class="app-timeline"><span class="rail"></span><span class="d attack" style="left:8%"></span><span class="d defend" style="left:14%"></span><span class="d attack" style="left:22%"></span><span class="d general" style="left:29%"></span><span class="d attack" style="left:37%"></span><span class="d defend" style="left:45%"></span><span class="d attack" style="left:56%"></span><span class="d defend" style="left:63%"></span><span class="d attack" style="left:70%"></span><span class="d attack new" style="left:78%"><em>Goal, Zara #4</em></span><span class="head"></span></div>
+          </div>
         </div>
-        <div class="match-ends" aria-hidden="true"><span>Kick-off</span><span>Half-time</span><span>Full-time</span></div>
-        <figcaption class="legend"><span class="l-attack">Attacking</span><span class="l-defend">Defending and goalkeeping</span><span class="l-general">General play</span></figcaption>
+        <ol class="demo-steps">
+          <li data-for="1"><b>Press T</b> when something happens</li>
+          <li data-for="2"><b>Pick the player</b> and the event</li>
+          <li data-for="3"><b>Get the highlight reel</b>, report and stats</li>
+        </ol>
       </figure>
     </div>
   </div>
@@ -136,6 +146,15 @@
         <div class="text">
           <h3>Set your squad up once</h3>
           <p>Add players, shirt numbers and positions once. Every new game starts with the team sheet ready, and next season carries the same players across.</p>
+        </div>
+      </div>
+
+      <div class="shot flip">
+        <figure><img src="assets/img/title-card.webp" alt="A highlight reel title card: Player Highlights, Zara Mitchell, shirt number 4, Round 6, 21 November 2026, versus City U10" width="1280" height="720" loading="lazy"></figure>
+        <div class="text">
+          <h3>Highlight reels ready to share</h3>
+          <p>Every match, player and season reel opens with a title card showing the player, round, date and opponent, with your club logo, then fades into the action.</p>
+          <p>Send a player's reel straight to their family. It's an ordinary video file that plays on any phone.</p>
         </div>
       </div>
     </div>
