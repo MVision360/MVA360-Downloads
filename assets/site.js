@@ -3,13 +3,13 @@
   "use strict";
 
   // Hero demo: players move, a goal, press T, pick player and event, reel ready.
-  var app = document.querySelector(".demo-app");
+  var app = document.querySelector(".demo-shot");
   if (app) {
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var steps = document.querySelectorAll(".demo-steps li");
     var showStep = function (step) {
       app.setAttribute("data-step", String(step));
-      var active = { "1": 1, "2": 2, "3": 2, "4": 3 }[String(step)] || 0;
+      var active = { "1": 1, "2": 2, "3": 2, "4": 2, "5": 3 }[String(step)] || 0;
       steps.forEach(function (li) {
         li.classList.toggle("on", step === "static" || Number(li.getAttribute("data-for")) === active);
       });
@@ -29,8 +29,8 @@
       return { x: p[0], y: p[1], el: c, phase: i * 1.7 };
     });
     // The move: a few passes, then a shot into the right-hand goal.
-    var path = [[340, 120], [310, 200], [200, 150], [120, 170], [24, 150]];
-    var LOOP = 12000, GOAL_AT = 3000, start = null, visible = true, timers = [];
+    var path = [[340, 120], [310, 200], [200, 150], [110, 150], [24, 150]];  // last pass and shot in a straight line
+    var LOOP = 12500, GOAL_AT = 3000, start = null, visible = true, timers = [];
 
     var place = function (t) {
       var moving = t < GOAL_AT ? t : GOAL_AT;
@@ -49,10 +49,11 @@
     var schedule = function () {
       timers.forEach(clearTimeout);
       timers = [
-        setTimeout(function () { showStep(1); }, GOAL_AT + 150),   // T pressed: video pauses, panel opens
-        setTimeout(function () { showStep(2); }, GOAL_AT + 1500),  // player chosen
-        setTimeout(function () { showStep(3); }, GOAL_AT + 2700),  // event chosen: dot lands on the timeline
-        setTimeout(function () { showStep(4); }, GOAL_AT + 4300),  // highlight reel ready
+        setTimeout(function () { showStep(1); }, GOAL_AT + 200),   // T pressed: video pauses, Tag Event panel opens
+        setTimeout(function () { showStep(2); }, GOAL_AT + 1400),  // player chosen
+        setTimeout(function () { showStep(3); }, GOAL_AT + 2400),  // Goal pressed
+        setTimeout(function () { showStep(4); }, GOAL_AT + 2900),  // saved: the tag is on the timeline
+        setTimeout(function () { showStep(5); }, GOAL_AT + 4600),  // highlight reel ready
         setTimeout(function () { showStep(0); start = null; schedule(); }, LOOP)
       ];
     };
