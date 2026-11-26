@@ -36,6 +36,8 @@ Open the file, click **History**, click the change before yours, then the **⋯*
 | Support email address | every `.html` file | `support@mva360.com.au` |
 | Colours | `assets/site.css` | `--orange`, `--navy`, `--chalk` near the top |
 
+If you change `assets/site.css` or `assets/site.js`, also change the `?v=` number after their names in every page (e.g. `site.css?v=20261126` → `site.css?v=20261201`). That makes browsers fetch the new version instead of an old saved copy.
+
 The **top menu and footer are copied in every page**. If you change a menu link, change it in `index.html`, `download.html`, `help.html` and the three `legal/` pages.
 
 ## Adding a question
