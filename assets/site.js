@@ -1,4 +1,4 @@
-// MVA360 website: the animated app demo in the header and the billing switch.
+// MVA360 website: the animated app demo in the header, the billing switch and the back-to-top button.
 (function () {
   "use strict";
 
@@ -97,4 +97,20 @@
   buttons.forEach(function (b) {
     b.addEventListener("click", function () { setBilling(b.getAttribute("data-billing")); });
   });
+
+  // Back to top: a round button that appears once you've scrolled down a screen or so.
+  var toTop = document.createElement("a");
+  toTop.href = "#top";
+  toTop.className = "to-top";
+  toTop.setAttribute("aria-label", "Back to top");
+  toTop.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 14l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  toTop.addEventListener("click", function (e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (history.replaceState) history.replaceState(null, "", location.pathname + location.search);
+  });
+  document.body.appendChild(toTop);
+  var onScroll = function () { toTop.classList.toggle("show", window.scrollY > window.innerHeight * 0.8); };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
 })();

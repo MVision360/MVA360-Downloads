@@ -422,3 +422,17 @@ kbd { font-family: var(--body); font-size: .9em; font-weight: 700; background: #
 .service-teaser { padding: 0 0 clamp(40px, 6vw, 72px); }
 .service-callout { max-width: none; padding: 26px 30px; }
 .service-callout h2 { font-size: clamp(1.7rem, 3.4vw, 2.3rem); margin-bottom: 10px; max-width: none; }
+
+/* Back-to-top button (added by site.js) ------------------------------ */
+.to-top {
+  position: fixed; right: 20px; bottom: 20px; z-index: 50;
+  width: 48px; height: 48px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--navy); color: #fff; border: 2px solid #fff;
+  box-shadow: 0 6px 18px rgba(19, 32, 43, 0.28);
+  opacity: 0; visibility: hidden; transform: translateY(10px);
+  transition: opacity 0.2s, transform 0.2s, visibility 0.2s, background 0.2s;
+}
+.to-top.show { opacity: 1; visibility: visible; transform: none; }
+.to-top:hover, .to-top:focus-visible { background: var(--orange); color: #fff; }
+@media (prefers-reduced-motion: reduce) { .to-top { transition: none; } }
